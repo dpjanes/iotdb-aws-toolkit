@@ -7,7 +7,7 @@
         "iot:Connect",
         "iot:Subscribe"
       ], 
-      "Ressource": [
+      "Resource": [
         "*"
       ]
     }
