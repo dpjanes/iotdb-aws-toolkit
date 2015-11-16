@@ -24,8 +24,8 @@ The subfolders are:
 
 * **root**: use these policies sparingly, as they make your system wide open
 * **topic-open**: use these policies if you're working with a fairly small implementation, and you want all things to be able to do everything
-* **topic-restricted**: use these policies if you want to restrict Things from accessing things outside their "group" (see Topics below)
-* **topic-individual**: use these policies if you want to restrict Things to accessing only their own stuff
+* **topic-group**: use these policies if you want to restrict Things from accessing things outside their "group" (see Topics below)
+* **topic-thing**: use these policies if you want to restrict Things to accessing only their own stuff
 
 In general I'm working with the principal that you should nail down stuff as much as possible.
 If you're creating a sensor that only can post thing and never can receive messages,
@@ -33,8 +33,8 @@ it should not have the ability to subscribe to a message thing
 
 Because topic access control is tied to certicates, note:
 
-* if you use **topic-restricted**, assume that all the Things with the "group" share the same X.509 certficate
-* if you use **topic-individual**, assume that every Thing will have its own X.509 certificate
+* if you use **topic-group**, assume that all the Things with the "group" share the same X.509 certficate
+* if you use **topic-thing**, assume that every Thing will have its own X.509 certificate
 
 These can be mixed and matched, i.e. some things can be more nailed down than others. Obviously creating 
 X.509 certificates for each thing is more work.
