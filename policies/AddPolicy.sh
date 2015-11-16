@@ -10,8 +10,8 @@
 #   stage and you're logged in a user that is "root" authenticated
 #   for both IAM and IOT
 
-MY_AWS_ORG=${MY_AWS_ORG:=my_org}
-MY_AWS_GRP=${MY_AWS_GRP:=my_grp}
+MY_AWS_ORG=${MY_AWS_ORG:=org}
+MY_AWS_GRP=${MY_AWS_GRP:=grp}
 
 AWS_ID=$(aws iam get-user | python -c '
 import json, sys, re
@@ -20,7 +20,6 @@ user_arn = d["User"]["Arn"]
 user_id = re.sub("^arn:aws:iam:[^:]*:(\d+):.*$", "\\1", user_arn)
 print user_id
 ')
-echo $AWS_ID
 
 AWS_REGION=$(grep '^region =' ~/.aws/config | head -1 | sed -e '1 s/^.* = //')
 
@@ -42,12 +41,12 @@ while [ $# -gt 0 ] ; do
             AWS_ID="$1"
             shift
 			;;
-		--org)
+		--organization|--org)
 			shift
             AWS_MY_ORG="$1"
             shift
 			;;
-		--group)
+		--group|--grp)
 			shift
             AWS_MY_GROUP="$1"
             shift
@@ -59,7 +58,10 @@ while [ $# -gt 0 ] ; do
             echo "--region <region>    change AWS region (is: $AWS_REGION)"
             echo "--id <id>            change AWS User ID (is: $AWS_ID)"
             echo "--org <org_name>     change Organization used in topics (is: $MY_AWS_ORG)"
-            echo "--grp <group_name>   change Group used in topics (is: $MY_AWS_GRP)"
+            echo "--group <group_name> change Group used in topics (is: $MY_AWS_GRP)"
+            echo
+            echo "You can default 'org' and 'group' with the environment variables"
+            echo "MY_AWS_ORG and MY_AWS_GRP"
 			exit 0
 			;;
 		--*)
@@ -71,11 +73,15 @@ while [ $# -gt 0 ] ; do
 	esac
 done
 
-set -x
+## set -x
 for SRC in $*
 do
-    NAME="${SRC%.json}"
-    DOT_SRC=".${SRC}"
+    BASENAME=$(basename "${SRC}")
+    NAME="${BASENAME%.json}"
+    NAME="${NAME/my_org/${MY_AWS_ORG}}"
+    NAME="${NAME/my_grp/${MY_AWS_GRP}}"
+
+    DOT_SRC=".${NAME}.json"
     URL="file://${DOT_SRC}"
 
     sed \
@@ -86,6 +92,7 @@ do
         < $SRC > $DOT_SRC
     cat $DOT_SRC
 
+    echo "** policy: $NAME"
     aws iot create-policy --policy-name "$NAME" --policy-document "$URL" 
     rm "${DOT_SRC}"
 done
