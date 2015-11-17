@@ -2,6 +2,10 @@
 
 Useful tools and files for configuring your AWS IoT installation
 
+## Important Links
+
+* [AWS IoT Developer Guide](http://docs.aws.amazon.com/iot/latest/developerguide/what-is-aws-iot.html)
+
 ## Setting Up
 
 1. Sign up for AWS
@@ -23,5 +27,11 @@ You can run
 
 to get reasonable values. 
 
-To understand what MY_AWS_ORG and MY_AWS_GRP are, please see 
-[iot/policies/README.md](iot/policies/README.md)
+To understand what MY_AWS_ORG and MY_AWS_GRP are, please see "Topics" in
+[iot/policies/README.md](iot/policies/README.md).
+It's not important to make a decision on these, so leave them as the
+defaults if you don't want to think about it right now.
+
+## Folders
+
+

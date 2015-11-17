@@ -3,8 +3,7 @@
   "Statement": [
     {
       "Action": [
-        "dynamodb:*", 
-        "lambda:InvokeFunction"
+        "kinesis:*"
       ], 
       "Effect": "Allow", 
       "Resource": [
