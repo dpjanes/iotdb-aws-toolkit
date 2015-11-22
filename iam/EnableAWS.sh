@@ -14,7 +14,83 @@
 TXT_ERR=.err.txt
 TXT_OUT=.out.txt
 
-KEYS="AWSAll AWSDynamoDB AWSKinesis AWSLambda AWSS3 AWSSNS AWSSQS"
+DO_AWSAll=
+DO_AWSDynamoDB=
+DO_AWSKinesis=
+DO_AWSLambda=
+DO_AWSS3=
+DO_AWSSNS=
+DO_AWSSQS=
+
+while [ $# -gt 0 ] ; do
+	case "$1" in
+		--)
+			shift
+			break
+			;;
+        --all)
+			shift
+            DO_AWSAll=AWSAll
+            DO_AWSDynamoDB=AWSDynamoDB
+            DO_AWSKinesis=AWSKinesis
+            DO_AWSLambda=AWSLambda
+            DO_AWSS3=AWSS3
+            DO_AWSSNS=AWSSNS
+            DO_AWSSQS=AWSSQS
+            ;;
+        --dynamodb|dynamo-db)
+			shift
+            DO_AWSDynamoDB=AWSDynamoDB
+            ;;
+        --kinesis)
+			shift
+            DO_AWSKinesis=AWSKinesis
+            ;;
+        --lambda)
+			shift
+            DO_AWSLambda=AWSLambda
+            ;;
+        --s3)
+			shift
+            DO_AWSS3=AWSS3
+            ;;
+        --sns)
+			shift
+            DO_AWSSNS=AWSSNS
+            ;;
+        --sqs)
+			shift
+            DO_AWSSQS=AWSSQS
+            ;;
+		--help)
+			echo "usage: $0 [options]"
+			echo
+			echo "options:"
+            echo "--all          enable all services"
+            echo "--dynamo-db    enable DynamoDB"
+            echo "--kinesis      enable Kinesis"
+            echo "--lambda       enable Lambda"
+            echo "--s3           enable S3"
+            echo "--sns          enable SNS"
+            echo "--sqs          enable SQS"
+			exit 0
+			;;
+		--*)
+			echo "Unrecognized option"
+			exit 1
+			;;
+		*)
+			break
+	esac
+done
+
+KEYS="$DO_AWSAll $DO_AWSDynamoDB $DO_AWSKinesis $DO_AWSLambda $DO_AWSS3 $DO_AWSSNS $DO_AWSSQS"
+if [ -z "${KEYS// /}" ]
+then
+    echo "$0: select at least one AWS service"
+    exit 1
+fi
+
 for KEY in $KEYS
 do
     POLICY_NAME="IotAllow${KEY}Policy"
