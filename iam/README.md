@@ -22,6 +22,10 @@ can do.
 So there's a level of indirection in there provided by Roles, which
 basically acts as a bucket of Policies.
 
+See more here:
+
+* http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html
+
 
 ### EnableAWS.sh
 
