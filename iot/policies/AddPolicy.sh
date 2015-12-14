@@ -67,6 +67,13 @@ while [ $# -gt 0 ] ; do
             echo "--group <group_name> change Group used in topics (is: $MY_AWS_GRP)"
             echo "--thing <thing-id>   change Thing ID used in topics (is: $MY_AWS_THING)"
             echo
+            echo "Policy JSON files can be found in subdirectories:"
+            echo
+            echo "./root - superuser level to _everything_: use almost never"
+            echo "./topic-open - access to all AWS IoT topics: use sparingly"
+            echo "./topic-group - access to only (org,group) topics: use this"
+            echo "./topic-thing - access to only (org,group,thing) topics: best"
+            echo
             echo "You can default 'org' and 'group' with the environment variables"
             echo "MY_AWS_ORG and MY_AWS_GRP"
 			exit 0
@@ -79,6 +86,13 @@ while [ $# -gt 0 ] ; do
 			break
 	esac
 done
+
+if [ $# = 0 ]
+then
+    echo "AddPolicy: at least one file argument is needed"
+    echo "use --help to find out more"
+    exit 1
+fi
 
 ## set -x
 for SRC in $*

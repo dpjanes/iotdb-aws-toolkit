@@ -1,4 +1,8 @@
-## ./iam
+# ./iam
+
+Useful stuff for AWS IAM (used with AWS IoT)
+
+## Concepts
 
 There's three AWS IoT concepts to know about:
 
@@ -27,7 +31,7 @@ See more here:
 * http://docs.aws.amazon.com/iot/latest/developerguide/iot-rules.html
 
 
-### EnableAWS.sh
+## EnableAWS.sh
 
 This script will set up the "Roles" and "Policies" you'll probably need.
 It's safe to run this script multiple times.
@@ -59,11 +63,11 @@ If you want to just enable a specific policy, do
 
 for more info.
 
-### ./iam/roles
+## ./iam/roles
 
 * IotAssumeRole.json - this Role is basically all you need, just name it in different ways
 
-### ./iam/policies
+## ./iam/policies
 
 It's possible you may want to modify these to be even more restrictive. 
 They allow full access to whichever AWS service they're associatd with
