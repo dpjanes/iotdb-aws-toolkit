@@ -1,7 +1,7 @@
 # Policies
 
 Here's some useful policies for your AWS IoT implementation.
-Policies are basically access control rules.
+Policies are basically access control rules to the MQTT hierarchy.
 
 ## Tools
 
@@ -17,6 +17,33 @@ You need to have your AWS IoT command line tools set up before this will work.
 You can get help about parameterization by doing
 
     $ sh AddPolicy.sh --help
+
+### More Examples
+
+Allow access to "ibm/#". 
+The Policy will be called "AllowTopicIoTConnectPublishSubscribe-ibm".
+
+    $ sh AddPolicy.sh \
+        --org "ibm" \
+        topic-grp/AllowTopicIoTConnectPublishSubscribe-my_org.json
+
+Allow access to "ibm/canada/+/#".
+The Policy will be called "AllowTopicIoTConnectPublishSubscribe-ibm-canada".
+
+    $ sh AddPolicy.sh \
+        --org "ibm" \
+        --grp "canada" \
+        topic-grp/AllowTopicIoTConnectPublishSubscribe-my_org-my_grp.json
+
+Allow _publish only_ access to "ibm/canada/+/u1034"
+The Policy will be called "AllowTopicIoTConnectPublish-ibm-canada-u1034".
+
+    $ sh AddPolicy.sh  \
+        --org "ibm" \
+        --grp "canada" \
+        --scope "u1023" \
+        topic-scope/AllowTopicIoTConnectPublish-my_org-my_grp-my_scope.json
+
 
 ## Folders
 
