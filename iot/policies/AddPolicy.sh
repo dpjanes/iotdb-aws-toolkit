@@ -14,15 +14,8 @@ MY_AWS_ORG=${MY_AWS_ORG:=org}
 MY_AWS_GRP=${MY_AWS_GRP:=grp}
 MY_AWS_SCOPE="scope"
 
-AWS_ID=$(aws iam get-user | python -c '
-import json, sys, re
-d = json.load(sys.stdin)
-user_arn = d["User"]["Arn"]
-user_id = re.sub("^arn:aws:iam:[^:]*:(\d+):.*$", "\\1", user_arn)
-print user_id
-')
-
-AWS_REGION=$(grep '^region =' ~/.aws/config | head -1 | sed -e '1 s/^.* = //')
+AWS_ID=`sh  ../../tools/GetIAMUserID.sh`
+AWS_REGION=`sh  ../../tools/GetRegion.sh`
 
 ## echo $MY_AWS_ORG $MY_AWS_GRP $AWS_ID $AWS_REGION
 ## exit 
