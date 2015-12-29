@@ -32,6 +32,28 @@ To understand what MY_AWS_ORG and MY_AWS_GRP are, please see "Topics" in
 It's not important to make a decision on these, so leave them as the
 defaults if you don't want to think about it right now.
 
+## Topics
+
+Our code is based around the following MQTT topic organization.
+
+* Layer 1 : the _name_ of your organization (defaults $MY_AWS_ORG)
+* Layer 2 : the _code_ for a particular "group" of things (defaults $MY_AWS_GRP)
+* Layer 3 : a version, always "01 "
+* Layer 4 : the _scope_, which is an arbitrary strong
+
+For example,
+
+    ibm/canada/01/l38939339
+
+This seems to provide a fairly flexibly upgrade path to very complicated networks.
+
+The actual readings can be in the payload, though you can add additional layers like:
+    
+    ibm/canada/01/l38939339/ambient-noise
+
+though personally I don't think this is a great idea.
+
+
 ## Folders
 
 
