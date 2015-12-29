@@ -40,4 +40,3 @@ Because topic access control is tied to certicates, note:
 
 These can be mixed and matched, i.e. some things can be more nailed down than others. Obviously creating 
 X.509 certificates for each Accessor is more work.
-
