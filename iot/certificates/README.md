@@ -15,3 +15,7 @@ To use
 * Use "$ sh MakeCertificate.sh --policy SomePolicyName" to create the policy
 
 The end result will be a ZIP file 
+
+# Links
+
+* [http://docs.aws.amazon.com/iot/latest/developerguide/secure-communication.html](http://docs.aws.amazon.com/iot/latest/developerguide/secure-communication.html)
