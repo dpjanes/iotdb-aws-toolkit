@@ -17,8 +17,9 @@ MY_AWS_ORG=${MY_AWS_ORG:=org}
 MY_AWS_GRP=${MY_AWS_GRP:=grp}
 MY_AWS_SCOPE="scope"
 
-AWS_ID=`sh  ../../tools/GetIAMUserID.sh`
-AWS_ENDPOINT=`sh  ../../tools/GetIOTEndpoint.sh`
+AWS_ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && cd .. && pwd )"
+AWS_ID=`sh ${AWS_ROOT}/tools/GetIAMUserID.sh`
+AWS_ENDPOINT=`sh ${AWS_ROOT}/tools/GetIOTEndpoint.sh`
 AWS_CERTS="certs"
 
 while [ $# -gt 0 ] ; do
