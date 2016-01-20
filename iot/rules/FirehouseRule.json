@@ -1,0 +1,10 @@
+{
+    "sql": "SELECT * FROM 'my-topic'",
+    "ruleDisabled": false,
+    "actions": [{
+        "firehose": {
+            "roleArn": ""arn:aws:iam::123456789012:role/my-iot-role",
+            "deliveryStreamName": "my-stream-name"
+        }
+    }]
+}

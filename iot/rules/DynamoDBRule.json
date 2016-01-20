@@ -1,0 +1,14 @@
+{
+  "sql": "SELECT * FROM 'iot/test'",
+  "ruleDisabled": false,
+  "actions": [{
+      "dynamoDB": {
+          "tableName": "my-dynamodb-table",
+          "roleArn": "arn:aws:iam::123456789012:role/my-iot-role",
+          "hashKeyField": "topic",
+          "hashKeyValue": "${topic(2)}",
+          "rangeKeyField": "timestamp",
+          "rangeKeyValue": "${timestamp()}"
+      }
+  }]
+}

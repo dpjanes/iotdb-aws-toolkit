@@ -84,7 +84,7 @@ done
 
 if [ $# = 0 ]
 then
-    echo "MQTTSubscribe: argument of 'org', 'grp', 'scope' or 'all' is needed AND a message"
+    echo "MQTTSubscribe: argument of 'org', grp', 'scope' or 'all'"
     echo "use --help to find out more"
     exit 1
 elif [ $1 = "org" ]

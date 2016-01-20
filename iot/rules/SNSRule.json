@@ -1,0 +1,10 @@
+{
+  "sql": "expression",
+  "ruleDisabled": false,
+  "actions": [{
+      "sns": {
+          "targetArn": "arn:aws:sns:us-west-2:123456789012:my-sns-topic",
+          "roleArn": "arn:aws:iam::123456789012:role/my-iot-role"
+      }
+  }]
+}

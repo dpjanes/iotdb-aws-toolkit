@@ -1,0 +1,10 @@
+{
+  "sql": "expression",
+  "ruleDisabled": false,
+  "actions": [{
+      "republish": {
+          "topic": "my-mqtt-topic",
+          "roleArn": "arn:aws:iam::123456789012:role/my-iot-role"
+      }
+  }]
+}
